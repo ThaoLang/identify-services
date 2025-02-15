@@ -26,23 +26,35 @@ public class UserController {
     }
 
     @GetMapping
-    List<User> getUsers(){
-        return userService.getUsers();
+    ApiResponse<List<User>> getUsers(){
+        ApiResponse<List<User>> apiResponse= new ApiResponse<>();
+        apiResponse.setResult(userService.getUsers());
+
+        return apiResponse;
     }
 
     @GetMapping("/{userId}")
-    User getUserById(@PathVariable("userId") String userId){
-        return userService.getUserById(userId);
+    ApiResponse<User> getUserById(@PathVariable("userId") String userId){
+        ApiResponse<User> apiResponse=new ApiResponse<>();
+        apiResponse.setResult(userService.getUserById(userId));
+
+        return apiResponse;
     }
 
     @PutMapping("/{userId}")
-    User updateUser(@PathVariable String userId, @RequestBody UserUpdateRequest request){
-        return userService.updateUser(userId,request);
+    ApiResponse<User> updateUser(@PathVariable String userId, @RequestBody UserUpdateRequest request){
+        ApiResponse<User> apiResponse=new ApiResponse<>();
+        apiResponse.setResult(userService.updateUser(userId,request));
+
+        return apiResponse;
     }
 
     @DeleteMapping("/{userId}")
-    String deleteUser(@PathVariable String userId){
+    ApiResponse deleteUser(@PathVariable String userId){
+        ApiResponse<User> apiResponse=new ApiResponse<>();
         userService.deleteUser(userId);
-        return "User has been deleted";
+        apiResponse.setMessage("User has been deleted");
+
+        return apiResponse;
     }
 }
