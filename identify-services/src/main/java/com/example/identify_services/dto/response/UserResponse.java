@@ -1,6 +1,6 @@
-package com.example.identify_services.dto.request;
+package com.example.identify_services.dto.response;
 
-import jakarta.validation.constraints.Size;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -11,11 +11,10 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UserCreationRequest {
-    @Size(min=4, message = "USERNAME_INVALID")
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class UserResponse {
+    String id;
     String username;
-
-    @Size(min=8, message = "PASSWORD_INVALID")
     String password;
     String firstName;
     String lastName;
