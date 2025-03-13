@@ -10,8 +10,12 @@ import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+<<<<<<< HEAD
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.context.SecurityContextHolder;
+=======
+import org.springframework.beans.factory.annotation.Autowired;
+>>>>>>> parent of 3239293 (authorization)
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,8 +38,6 @@ public class UserController {
 
     @GetMapping
     ApiResponse<List<User>> getUsers(){
-        var authentication = SecurityContextHolder.getContext().getAuthentication();
-
         ApiResponse<List<User>> apiResponse= new ApiResponse<>();
         apiResponse.setResult(userService.getUsers());
 
