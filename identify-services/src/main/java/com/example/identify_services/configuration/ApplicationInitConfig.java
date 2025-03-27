@@ -2,6 +2,7 @@ package com.example.identify_services.configuration;
 
 import com.example.identify_services.entity.User;
 import com.example.identify_services.enums.Role;
+import com.example.identify_services.repository.RoleRepository;
 import com.example.identify_services.repository.UserRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,7 @@ public class ApplicationInitConfig {
     PasswordEncoder passwordEncoder;
 
     @Bean
-    ApplicationRunner applicationRunner(UserRepository userRepository){
+    ApplicationRunner applicationRunner(UserRepository userRepository, RoleRepository roleRepository){
         return args -> {
             if (userRepository.findByUsername("admin").isEmpty()){
                 var roles= new HashSet<String>();
